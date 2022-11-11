@@ -60,8 +60,8 @@ float realModel(float force)
 int bigtouch = 0;
 var seed = DateTime.Now.Millisecond;
 Random rand = new Random(seed);
-float constantNoise = -.75f;
-float noiseScale = 4f;
+float constantNoise = -.25f;
+float noiseScale = 5f;
 Queue<float> noise = new Queue<float>();
 float totalNoise = 0f;
 
