@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 
 float dt = 0.025f;
-float K = 10;
+float K = 100;
 
 float Kp = 0.75f;
 
@@ -52,7 +52,7 @@ float controller(float force)
 
 float realModel(float force)
 {
-    return 2998 * 
+    return 2900 * 
         (float)Math.Sin(force / 1000f);
 }
 
@@ -61,7 +61,7 @@ int bigtouch = 0;
 var seed = DateTime.Now.Millisecond;
 Random rand = new Random(seed);
 float constantNoise = -.25f;
-float noiseScale = 5f;
+float noiseScale = 50f;
 Queue<float> noise = new Queue<float>();
 float totalNoise = 0f;
 
@@ -151,7 +151,7 @@ void tick()
 
         if (noise.Count >= K)
             totalNoise -= noise.Dequeue();
-        var newNoise = 2f * noiseScale * (rand.NextSingle() - .5f);
+        var newNoise = 2f * noiseScale * (rand.NextSingle() - .5f) / K;
         if (bigtouch > 0)
         {
             bigtouch--;
